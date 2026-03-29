@@ -17,7 +17,7 @@ Internet → Nginx (port 80) → Flask API (port 5000)
 
 Prérequis : Docker Desktop installé
 ```
-git clone https://github.com/TON-PSEUDO/mini-noc.git
+git clone https://github.com/PSEUDO/mini-noc.git
 cd mini-noc
 docker compose up -d
 ```
