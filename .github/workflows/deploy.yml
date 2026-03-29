@@ -1,0 +1,24 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t mini-noc-app ./app
+
+      - name: Test app starts
+        run: |
+          docker run -d -p 5000:5000 --name test-app mini-noc-app
+          sleep 5
+          curl --fail http://localhost:5000/ || exit 1
+          docker stop test-app
